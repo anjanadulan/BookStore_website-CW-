@@ -1,0 +1,74 @@
+
+.carousel-section {
+    margin: 30px 0 50px;
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.carousel-header h2 {
+    color: #3c3633;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.carousel-container {
+    overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    scroll-behavior: smooth;
+    padding: 10px 0 20px;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 25px;
+}
+
+.carousel-card {
+    flex: 0 0 240px; 
+}
+
+.view-more-card {
+    background: #e0ccbe;
+    border: none;
+    box-shadow: none;
+    min-height: 400px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.view-more-card a {
+    text-decoration: none;
+    color: #3c3633;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.view-more-card i {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.view-more-card:hover {
+    background: #d0bcae;
+    transform: translateY(-5px);
+}

@@ -1,0 +1,212 @@
+/* Login page */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3c3633;
+    font-family: sans-serif;
+}
+
+.login-box {
+    width: 90%;
+    max-width: 400px;
+    padding: 50px 40px; 
+    background: #e0ccbe;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+
+.login-box input[type="text"], .login-box input[type="password"] {
+    width: 100%;
+    padding: 10px 5px;
+    margin: 15px 0 30px 0;
+    box-sizing: border-box;
+                
+
+    border: none;
+    border-bottom: 2px solid #8d7f76;
+    background: transparent;
+    outline: none;
+                
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+
+.login-box input[type="text"]:focus, .login-box input[type="password"]:focus {
+    border-bottom: 2px solid #3c3633;
+    padding-left: 10px;
+}
+
+
+.login-box input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #3c3633;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.login-box input[type="submit"]:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+
+
+/* Add Item Page */
+.form-box {
+    width: 100%;
+    max-width: 450px;  
+    padding: 25px 30px;  
+    background: #e0ccbe;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    margin: 20px;   
+    box-sizing: border-box;
+}
+
+
+.form-box input[type="text"], 
+.form-box input[type="number"],
+.form-box textarea,
+.form-box select {
+    width: 100%;
+    padding: 8px 0;     
+    margin: 5px 0 15px 0; 
+    box-sizing: border-box;
+    
+    border: none;
+    border-bottom: 2px solid #8d7f76;
+    background: transparent;
+    outline: none;
+    
+    font-size: 15px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.form-box input:focus, 
+.form-box select:focus, 
+.form-box textarea:focus {
+    border-bottom: 2px solid #3c3633;
+    padding-left: 5px;
+}
+
+
+.form-box select option {
+    background-color: #e0ccbe;
+    color: #333;
+}
+
+
+.form-box input[type="file"] {
+    border-bottom: none;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+
+label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #5d5550;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.row-container { /* for Author and Price */
+    display: flex;
+    gap: 15px;
+}
+
+
+#imagePreview {
+    display: none; 
+    width: 100%;
+    max-width: 150px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #8d7f76;
+}
+
+.form-box input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #3c3633;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.form-box input[type="submit"]:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+form.search-box {
+    margin: 0;
+    padding: 0;
+    display: flex;  
+    align-items: center;
+}
+
+
+/* --- Hero --- */
+.hero-wrapper {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-card {
+    background: #e0ccbe;
+    width: 100%;
+    max-width: 900px;
+    padding: 80px 40px; 
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08); 
+    transition: transform 0.3s ease;
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+}
+
+.hero-card h1 {
+    color: #3c3633;
+    font-size: 3rem;
+    margin: 0 0 15px 0;
+    font-weight: 800;
+}
+
+.hero-card p {
+    color: #5d5550;
+    font-size: 1.2rem;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero-card h1 { font-size: 2rem; }
+    .hero-card { padding: 50px 20px; }
+}
