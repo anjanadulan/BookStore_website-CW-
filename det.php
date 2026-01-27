@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?php echo htmlspecialchars($book['title']); ?> - Details</title>
+        <title><?php echo htmlspecialchars($book['title']); ?> - Horizon Books</title>
         
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="res-styles.css">

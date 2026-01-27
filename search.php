@@ -20,7 +20,7 @@ if (isset($_GET['q'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Search Results: <?php echo htmlspecialchars($search); ?></title>
+        <title>Search Results: <?php echo htmlspecialchars($search); ?> - Horizon Books</title>
         
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="res-styles.css">
