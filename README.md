@@ -4,7 +4,21 @@ A modern, full-featured online bookshop built with PHP and MySQL, offering a com
 
 ## Live Demo
 
-Visit the live website: [book-store.fwh.is](https://book-store.fwh.is)
+🌐 **Visit the live website:** [https://horizonbooks.free.nf](https://horizonbooks.free.nf)
+
+### Hosting Information
+
+The application is hosted on **[InfinityFree](https://www.infinityfree.com)**, a reliable free web hosting platform that provides:
+
+- ✅ **Unlimited Disk Space & Bandwidth** - Perfect for growing applications
+- ✅ **PHP & MySQL Support** - Full compatibility with our tech stack
+- ✅ **Free SSL Certificates** - Secure HTTPS connection for all users
+- ✅ **99.9% Uptime Guarantee** - Reliable hosting service
+- ✅ **No Forced Ads** - Clean, professional website presentation
+- ✅ **cPanel Control Panel** - Easy management and configuration
+- ✅ **Free Subdomain** - Instant deployment with .free.nf domain
+
+InfinityFree is an excellent choice for students, developers, and small projects who need professional hosting without the cost. It offers enterprise-level features completely free, making it ideal for academic projects and portfolio demonstrations.
 
 ## Features
 
