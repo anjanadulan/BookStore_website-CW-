@@ -23,6 +23,125 @@ function getImagePath($dbImage) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <script src="script.js" defer></script>
+
+        <style>
+            body {
+                animation: fadeIn 0.8s ease;
+                opacity: 0;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes fadeIn {
+                from { 
+                    opacity: 0;
+                }
+                to { 
+                    opacity: 1;
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero-section {
+                animation: fadeInDown 0.8s ease 0.2s both;
+                padding: 30px;
+                margin: 0;
+            }
+            
+            .hero-help {
+                padding: 60px 20px 0px 20px;
+            }
+
+            .hero-header {
+                background-color: #e0ccbe;
+                padding: 50px 20px 50px 20px;
+                text-align: center;
+            }
+
+            .hero-header h1 {
+                color: #3c3633;
+                font-size: 3rem;
+                margin: 0;
+                margin-bottom: 10px;
+                animation: fadeInUp 0.6s ease;
+            }
+
+            .hero-header p {
+                color: #5d5550;
+                font-size: 1.2rem;
+                margin: 0;
+            }
+
+            .slideshow-container {
+                animation: fadeIn 1s ease 0.4s both;
+            }
+
+            .latest-section {
+                animation: fadeInUp 0.8s ease 0.6s both;
+            }
+
+            .latest-header {
+                background-color: #3c3633;
+                color: #fff;
+                padding: 20px;
+                border-radius: 6px;
+                margin: 30px 0 20px 0;
+                text-align: center;
+                animation: fadeInDown 0.6s ease 0.8s both;
+            }
+
+            .latest-header h2 {
+                margin: 0;
+                font-size: 2rem;
+            }
+
+            .carousel-section {
+                animation: fadeInUp 0.6s ease both;
+                opacity: 0;
+            }
+
+            .carousel-section:nth-of-type(1) { animation-delay: 1s; }
+            .carousel-section:nth-of-type(2) { animation-delay: 1.1s; }
+            .carousel-section:nth-of-type(3) { animation-delay: 1.2s; }
+            .carousel-section:nth-of-type(4) { animation-delay: 1.3s; }
+            .carousel-section:nth-of-type(5) { animation-delay: 1.4s; }
+            .carousel-section:nth-of-type(6) { animation-delay: 1.5s; }
+
+            .book-card {
+                animation: fadeInUp 0.6s ease;
+                opacity: 0;
+                animation-fill-mode: forwards;
+            }
+
+            .book-grid .book-card:nth-child(1) { animation-delay: 1s; }
+            .book-grid .book-card:nth-child(2) { animation-delay: 1.1s; }
+            .book-grid .book-card:nth-child(3) { animation-delay: 1.15s; }
+            .book-grid .book-card:nth-child(4) { animation-delay: 1.2s; }
+            .book-grid .book-card:nth-child(5) { animation-delay: 1.25s; }
+            .book-grid .book-card:nth-child(6) { animation-delay: 1.3s; }
+            .book-grid .book-card:nth-child(7) { animation-delay: 1.35s; }
+            .book-grid .book-card:nth-child(8) { animation-delay: 1.4s; }
+        </style>
     </head>
    
     <body>
@@ -49,33 +168,34 @@ function getImagePath($dbImage) {
             </form>
         </nav>
 
-        <div style="background: #e0ccbe; text-align: center; padding-top: 90px;">
-            <h1 style="color: #3c3633; margin: 0;font-size: 3rem;">Welcome to the Book Corner</h1>
-            <p style="color: #5d5550;">Discover your next favorite story.</p>
-            <hr style="margin-bottom: 0px;">
+        <div class="hero-section">
+            <div class="hero-help">
+                <div class="hero-header" style="border:2px dashed #ffffff; border-radius: 15px;">
+                    <h1>Welcome to the Book Corner</h1>
+                    <p>Discover your next favorite story.</p>
+                </div>
+            </div>
         </div>
 
         <div class="slideshow-container">
             <div class="mySlides fade">
                 <img src="uploads/banner1.jpg" style="width:100%">
-                <div class="text">Caption Text</div>
             </div>
             <div class="mySlides fade">
                 <img src="uploads/banner2.jpg" style="width:100%">
-                <div class="text">Caption Two</div>
             </div>
             <div class="mySlides fade">
                 <img src="uploads/banner3.jpg" style="width:100%">
-                <div class="text">Caption Three</div>
             </div>
         </div>
 
 
         <div class="main-container">
             
-            <latest> <!-- Latest Arrivals Section -->
-                <h2 style="text-align:center; color:#3c3633; margin-top:30px; margin-bottom: 0; padding:10px 10px; background-color: #3c3633; color: #fff; border-radius: 6px;">Latest Arrivals</h2>
-                <br>
+            <section class="latest-section">
+                <div class="latest-header">
+                    <h2>Latest Arrivals</h2>
+                </div>
                 <div class="book-grid">
                     <?php
                     $sql = "SELECT * FROM books ORDER BY id DESC LIMIT 7";
@@ -127,7 +247,7 @@ function getImagePath($dbImage) {
                     ?>
                 </div>
 
-            </latest> 
+            </section> 
             <hr>
             <section class="carousel-section"> <!-- Sci-Fi -->
                 <div class="carousel-header">
@@ -579,7 +699,7 @@ function getImagePath($dbImage) {
                         <li><a href="viewall.php?genre=Sci-Fi">Science Fiction</a></li>
                         <li><a href="viewall.php?genre=Education">Educational</a></li>
                         <li><a href="about.php">About Us</a></li>
-                        <li><a href="#">Contact US</a></li>
+                        <li><a href="about.php">Contact US</a></li>
                     </ul>
                 </div>
 

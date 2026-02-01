@@ -18,6 +18,26 @@ session_start();
     <script src="script.js" defer></script>
 
     <style>
+        body {
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         hr {
             border: none;
             height: 1px;
@@ -26,19 +46,23 @@ session_start();
             max-width: 1200px;
             opacity: 0.2;
         }
-        .services-header {
+        .services-section {
+            padding: 60px 20px 0px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
-            padding: 50px 20px 10px 20px;
+        }
+
+        .services-header {
             background-color: #e0ccbe;
+            padding: 50px 20px 50px 20px;
+            margin-bottom: 50px;
         }
         .services-header h1 {
             color: #3c3633;
             font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .services-header p {
-            color: #5d5550;
-            font-size: 1.2rem;
+            margin-bottom: 0;
+            animation: fadeInUp 0.6s ease;
         }
 
         .services-grid {
@@ -52,8 +76,9 @@ session_start();
         }
 
         .service-card {
-            flex: 0 1 350px; 
-            max-width: 400px; 
+            flex: 1 1 300px;
+            min-width: 280px;
+            max-width: 350px;
             background: #fff;
             padding: 40px 30px;
             border-radius: 15px;
@@ -61,7 +86,14 @@ session_start();
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
         }
+
+        .service-card:nth-child(1) { animation: fadeInUp 0.6s ease 0.3s both; }
+        .service-card:nth-child(2) { animation: fadeInUp 0.6s ease 0.4s both; }
+        .service-card:nth-child(3) { animation: fadeInUp 0.6s ease 0.5s both; }
+        .service-card:nth-child(4) { animation: fadeInUp 0.6s ease 0.6s both; }
 
         .service-card:hover {
             transform: translateY(-10px);
@@ -80,6 +112,13 @@ session_start();
             margin: 0 auto 25px;
             font-size: 35px;
             color: #3c3633;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+            background: #d9534f;
+            color: #fff;
         }
 
         .service-card h3 {
@@ -215,43 +254,50 @@ session_start();
         </nav>
 
 
-    <div class="services-header">
-        <div style="padding-top: 40px;">
-            <h1>Our Services</h1>
-            <p>More than just a ordinary bookstore. We offer a large range of services for book lovers.</p>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="services-grid">
-        
-        <div class="service-card">
-            <div class="icon-box"><i class="uil uil-truck"></i></div>
-            <h3>Island-wide Delivery</h3>
-            <p>Order your favorite books from the comfort of your home. We provide fast and reliable delivery across the entire island within 3-5 working days.
-                Delevary charges may apply based on location.
+    <div class="main-container">
+        <section class="services-section">
+            <div class="services-header" style="border:2px dashed #ffffff; border-radius: 15px;">
+                <h1>Our Services</h1>
+            </div>
+            <hr>
+            <p style="text-align: center; color: #5d5550; font-size: 1.2rem; max-width: 800px; margin: 20px auto 40px auto; animation: fadeInUp 0.6s ease 0.2s both;">
+                More than just an ordinary bookstore. We offer a large range of services for book lovers.
             </p>
-        </div>
 
-        <div class="service-card">
-            <div class="icon-box"><i class="uil uil-gift"></i></div>
-            <h3>Gift Wrapping</h3>
-            <p>Sending a gift? Let us make it special. We offer premium gift wrapping services with personalized handwritten notes for your loved ones.</p>
-        </div>
 
-        <div class="service-card">
-            <div class="icon-box"><i class="uil uil-book-open"></i></div>
-            <h3>Special Orders</h3>
-            <p>Can't find the book you're looking for? We can order specific international titles for you from our global network of publishers.</p>
-        </div>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <div class="icon-box"><i class="uil uil-truck"></i></div>
+                    <h3>Island-wide Delivery</h3>
+                    <p>Order your favorite books from the comfort of your home. We provide fast and reliable delivery across the entire island within 3-5 working days.
+                        Delivery charges may apply based on location.
+                    </p>
+                </div>
 
-        <div class="service-card">
-            <div class="icon-box"><i class="uil uil-users-alt"></i></div>
-            <h3>Book Events</h3>
-            <p>Join our community! We host monthly book readings, author meet-and-greets, and study groups for students at our main branch.</p>
-        </div>
+                <div class="service-card">
+                    <div class="icon-box"><i class="uil uil-gift"></i></div>
+                    <h3>Gift Wrapping</h3>
+                    <p>Sending a gift? Let us make it special. We offer premium gift wrapping services with personalized handwritten notes for your loved ones.</p>
+                </div>
 
+                <div class="service-card">
+                    <div class="icon-box"><i class="uil uil-book-open"></i></div>
+                    <h3>Special Orders</h3>
+                    <p>Can't find the book you're looking for? We can order specific international titles for you from our global network of publishers.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon-box"><i class="uil uil-users-alt"></i></div>
+                    <h3>Book Events</h3>
+                    <p>Join our community! We host monthly book readings, author meet-and-greets, and study groups for students at our main branch.</p>
+                </div>
+
+            </div>
+        
+            <hr>
+
+        </section>
     </div>
 
     <div class="cta-section">
@@ -259,6 +305,7 @@ session_start();
         <p>Contact our support team and we will be happy to assist you.</p>
         <a href="#" class="cta-btn">Contact Us</a>
     </div>
+    
 
     <footer class="footer">
             <div class="footer-container">
@@ -275,7 +322,7 @@ session_start();
                         <li><a href="viewall.php?genre=Sci-Fi">Science Fiction</a></li>
                         <li><a href="viewall.php?genre=Education">Educational</a></li>
                         <li><a href="about.php">About Us</a></li>
-                        <li><a href="#">Contact US</a></li>
+                        <li><a href="about.php">Contact US</a></li>
                     </ul>
                 </div>
 

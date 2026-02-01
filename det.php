@@ -106,7 +106,7 @@ if (isset($_GET['id'])) {
                         <li><a href="viewall.php?genre=Sci-Fi">Science Fiction</a></li>
                         <li><a href="viewall.php?genre=Education">Educational</a></li>
                         <li><a href="about.php">About Us</a></li>
-                        <li><a href="#">Contact US</a></li>
+                        <li><a href="about.php">Contact US</a></li>
                     </ul>
                 </div>
 

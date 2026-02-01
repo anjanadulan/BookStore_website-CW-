@@ -1,12 +1,5 @@
 <?php
 session_start();
-include 'db.php';
-
-function getImagePath($dbImage) {
-    if (empty($dbImage)) { return "uploads/default.png"; }
-    if (strpos($dbImage, 'uploads/') === 0) { return $dbImage; }
-    return "uploads/" . $dbImage;
-}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +11,6 @@ function getImagePath($dbImage) {
         
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="res-styles.css">
-        <link rel="stylesheet" href="book-carousel.css">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -26,23 +18,12 @@ function getImagePath($dbImage) {
 
         <style>
             body {
-                animation: fadeIn 0.6s ease;
+                animation: fadeIn 0.5s ease;
             }
 
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
-            }
-
-            @keyframes fadeInDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
             }
 
             @keyframes fadeInUp {
@@ -56,95 +37,53 @@ function getImagePath($dbImage) {
                 }
             }
 
-            @keyframes float {
+            @keyframes pulse {
                 0%, 100% {
-                    transform: translateY(0);
+                    transform: scale(1);
                 }
                 50% {
-                    transform: translateY(-15px);
+                    transform: scale(1.05);
                 }
             }
 
             .error-container {
                 text-align: center;
-                padding: 80px 20px 40px 20px;
-                min-height: 40vh;
+                padding: 100px 20px 60px 20px;
+                min-height: 45vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
 
-            .book-404-wrapper {
-                position: relative;
-                margin-bottom: 30px;
-                animation: float 3s ease-in-out infinite;
-            }
-
-            .book-404 {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 5px;
-                perspective: 1000px;
-            }
-
-            .book-page {
-                width: 120px;
-                height: 160px;
-                background: linear-gradient(to bottom, #fff 0%, #f5f5f5 100%);
-                border: 3px solid #3c3633;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 80px;
+            .error-code {
+                font-size: 140px;
                 font-weight: 800;
                 color: #d9534f;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                position: relative;
-            }
-
-            .book-page-left {
-                border-right: none;
-                border-radius: 10px 0 0 10px;
-                transform: rotateY(-5deg);
-            }
-
-            .book-page-right {
-                border-left: none;
-                border-radius: 0 10px 10px 0;
-                transform: rotateY(5deg);
-            }
-
-            .book-spine {
-                width: 15px;
-                height: 160px;
-                background: linear-gradient(to right, #3c3633 0%, #5d5550 50%, #3c3633 100%);
-                border-top: 3px solid #3c3633;
-                border-bottom: 3px solid #3c3633;
-                box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+                line-height: 1;
+                margin-bottom: 20px;
+                animation: pulse 2s ease-in-out infinite;
             }
 
             .error-message {
-                font-size: 28px;
+                font-size: 32px;
                 color: #3c3633;
                 margin-bottom: 15px;
                 font-weight: 600;
-                animation: fadeInDown 0.8s ease 0.3s both;
             }
 
             .error-desc {
                 color: #5d5550;
-                margin-bottom: 50px;
+                margin-bottom: 60px;
                 max-width: 600px;
                 line-height: 1.6;
                 font-size: 16px;
-                animation: fadeInDown 0.8s ease 0.4s both;
             }
 
+            /* Navigation cards */
             .quick-nav-section {
                 max-width: 1000px;
-                margin: 0 auto 60px auto;
+                margin: 0 auto 80px auto;
                 padding: 0 20px;
             }
 
@@ -152,21 +91,20 @@ function getImagePath($dbImage) {
                 text-align: center;
                 color: #3c3633;
                 font-size: 1.8rem;
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
 
             .nav-cards-grid {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 25px;
-                max-width: 800px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 30px;
+                max-width: 900px;
                 margin: 0 auto;
             }
 
             .nav-card {
                 background: #fff;
-                padding: 30px;
+                padding: 40px;
                 border-radius: 15px;
                 border: 1px solid #e0ccbe;
                 box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -176,15 +114,12 @@ function getImagePath($dbImage) {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                flex: 1 1 220px;
-                min-width: 220px;
-                max-width: 250px;
             }
 
-            .nav-card:nth-child(1) { animation: fadeInUp 0.6s ease 0.4s both; }
-            .nav-card:nth-child(2) { animation: fadeInUp 0.6s ease 0.5s both; }
-            .nav-card:nth-child(3) { animation: fadeInUp 0.6s ease 0.6s both; }
-            .nav-card:nth-child(4) { animation: fadeInUp 0.6s ease 0.7s both; }
+            .nav-card:nth-child(1) { animation: fadeInUp 0.5s ease 0.2s both; }
+            .nav-card:nth-child(2) { animation: fadeInUp 0.5s ease 0.3s both; }
+            .nav-card:nth-child(3) { animation: fadeInUp 0.5s ease 0.4s both; }
+            .nav-card:nth-child(4) { animation: fadeInUp 0.5s ease 0.5s both; }
 
             .nav-card:hover {
                 transform: translateY(-5px);
@@ -193,9 +128,9 @@ function getImagePath($dbImage) {
             }
 
             .nav-card-icon {
-                font-size: 40px;
+                font-size: 50px;
                 color: #3c3633;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 transition: all 0.3s ease;
             }
 
@@ -205,51 +140,24 @@ function getImagePath($dbImage) {
             }
 
             .nav-card-title {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
                 font-weight: bold;
                 color: #3c3633;
-                margin-bottom: 8px;
+                margin-bottom: 10px;
             }
 
             .nav-card-desc {
-                font-size: 0.9rem;
+                font-size: 1rem;
                 color: #5d5550;
             }
 
-            .popular-books-section {
-                max-width: 1200px;
-                margin: 0 auto 60px auto;
-                padding: 0 20px;
-                animation: fadeIn 1s ease 0.8s both;
-            }
-
-            .popular-books-title {
-                text-align: center;
-                color: #3c3633;
-                font-size: 1.8rem;
-                margin-bottom: 30px;
-            }
-
-            .popular-books-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 25px;
-            }
-
             @media (max-width: 768px) {
-                .book-page {
-                    width: 90px;
-                    height: 130px;
-                    font-size: 60px;
-                }
-
-                .book-spine {
-                    width: 12px;
-                    height: 130px;
+                .error-code {
+                    font-size: 100px;
                 }
 
                 .error-message {
-                    font-size: 24px;
+                    font-size: 26px;
                 }
 
                 .error-desc {
@@ -257,37 +165,38 @@ function getImagePath($dbImage) {
                 }
 
                 .nav-cards-grid {
-                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                    gap: 15px;
+                    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                    gap: 20px;
                 }
 
                 .nav-card {
-                    padding: 20px;
+                    padding: 30px;
                 }
 
                 .nav-card-icon {
-                    font-size: 35px;
+                    font-size: 45px;
                 }
 
                 .nav-card-title {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                 }
             }
 
             @media (max-width: 480px) {
-                .book-page {
-                    width: 70px;
-                    height: 100px;
-                    font-size: 45px;
+                .error-code {
+                    font-size: 80px;
                 }
 
-                .book-spine {
-                    width: 10px;
-                    height: 100px;
+                .error-message {
+                    font-size: 22px;
                 }
 
                 .nav-cards-grid {
                     grid-template-columns: 1fr;
+                }
+
+                .nav-card {
+                    padding: 25px;
                 }
             }
         </style>
@@ -319,23 +228,16 @@ function getImagePath($dbImage) {
 
         <div class="main-container">
             <div class="error-container">
-                <div class="book-404-wrapper">
-                    <div class="book-404">
-                        <div class="book-page book-page-left">40</div>
-                        <div class="book-spine"></div>
-                        <div class="book-page book-page-right">4</div>
-                    </div>
-                </div>
-
-                <div class="error-message">Lost Between the Pages</div>
+                <div class="error-code">404</div>
+                <div class="error-message">Page Not Found</div>
                 <p class="error-desc">
-                    The page you're looking for seems to have wandered off into another chapter. 
-                    Let us help you find your way back to your next great read.
+                    The page you're looking for doesn't exist or has been moved. 
+                    Please use the links below to navigate.
                 </p>
             </div>
 
             <div class="quick-nav-section">
-                <h2 class="quick-nav-title">Where would you like to go?</h2>
+                <h2 class="quick-nav-title">Navigate to</h2>
                 <div class="nav-cards-grid">
                     <a href="index.php" class="nav-card">
                         <i class="uil uil-home nav-card-icon"></i>
@@ -362,51 +264,6 @@ function getImagePath($dbImage) {
                     </a>
                 </div>
             </div>
-
-            <?php
-            $sql = "SELECT * FROM books ORDER BY id DESC LIMIT 4";
-            $result = $conn->query($sql);
-
-            if ($result && $result->num_rows > 0):
-            ?>
-            <div class="popular-books-section">
-                <h2 class="popular-books-title">While You're Here... Check These Out!</h2>
-                <div class="book-grid popular-books-grid">
-                    <?php
-                    while($row = $result->fetch_assoc()) {
-                        $imagePath = getImagePath($row["image"]);
-                        
-                        echo "
-                        <div class='book-card'>
-                            <a href='det.php?id=".$row["id"]."'>
-                                <div class='image-box'>
-                                    <img src='".$imagePath."' alt='Book Cover'>
-                                </div>
-                            </a>
-                            
-                            <div class='details'>
-                                <span class='genre'>".$row["genre"]."</span>
-                                
-                                <a href='det.php?id=".$row["id"]."' style='color:inherit; text-decoration:none;'>
-                                    <h3>".$row["title"]."</h3>
-                                </a>
-                                
-                                <p class='author'>By ".$row["author"]."</p>
-                                
-                                <div class='card-bottom'>
-                                    <span class='price'>$".$row["price"]."</span>
-                                    <button style='border:none; background:none; cursor:pointer;'>
-                                        <i class='uil uil-shopping-bag' style='font-size: 20px; color: #3c3633;'></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        ";
-                    }
-                    ?>
-                </div>
-            </div>
-            <?php endif; ?>
         </div>
 
         <hr>

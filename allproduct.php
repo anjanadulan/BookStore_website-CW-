@@ -25,7 +25,86 @@ function getImagePath($dbImage) {
         <script src="script.js" defer></script>
 
         <style>
-            /* --- Pagng --- */
+            body {
+                animation: fadeIn 0.8s ease;
+                opacity: 0;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes fadeIn {
+                from { 
+                    opacity: 0;
+                }
+                to { 
+                    opacity: 1;
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .products-section {
+                animation: fadeInDown 0.8s ease 0.2s both;
+                padding: 60px 20px 0px 20px;
+                text-align: center;
+            }
+
+            .products-header {
+                background-color: #e0ccbe;
+                padding: 50px 20px 50px 20px;
+                margin-bottom: 50px;
+            }
+            
+            .products-header h1 {
+                color: #3c3633;
+                font-size: 3rem;
+                margin-bottom: 0;
+                animation: fadeInUp 0.6s ease;
+            }
+
+            hr {
+                border: none;
+                height: 1px;
+                background-color: #3c3633;
+                width: 100%;
+                max-width: 1200px;
+                opacity: 0.2;
+            }
+
+            .book-card {
+                animation: fadeInUp 0.6s ease;
+                opacity: 0;
+                animation-fill-mode: forwards;
+            }
+
+            .book-card:nth-child(1) { animation-delay: 0.3s; }
+            .book-card:nth-child(2) { animation-delay: 0.4s; }
+            .book-card:nth-child(3) { animation-delay: 0.5s; }
+            .book-card:nth-child(4) { animation-delay: 0.6s; }
+            .book-card:nth-child(5) { animation-delay: 0.7s; }
+            .book-card:nth-child(6) { animation-delay: 0.8s; }
+            .book-card:nth-child(7) { animation-delay: 0.9s; }
+            .book-card:nth-child(8) { animation-delay: 1s; }
+
             .page {
                 display: flex;
                 justify-content: center;
@@ -33,6 +112,7 @@ function getImagePath($dbImage) {
                 gap: 10px;
                 margin-top: 50px;
                 margin-bottom: 50px;
+                animation: fadeInUp 0.6s ease 1.2s both;
             }
 
             .page a {
@@ -48,12 +128,14 @@ function getImagePath($dbImage) {
                 font-weight: bold;
                 transition: all 0.3s ease;
                 border: 1px solid #e0ccbe;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             }
 
             .page a:hover {
                 background-color: #96887e;
                 color: white;
                 transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             }
 
             /* The Active Page Button */
@@ -90,106 +172,110 @@ function getImagePath($dbImage) {
             </form>
         </nav>
 
-        <div style="background: #e0ccbe; text-align: center; padding-top: 90px;">
-            <h1 style="color: #3c3633; margin: 0; font-size: 3rem;">All Products</h1>
-            <p style="color: #5d5550;">Discover all the amazing books we have to offer.</p>
-            <hr style="margin-bottom: 0px;">
-        </div>
-
         <div class="main-container">
-            
-            <div class="book-grid">
-    <?php
-    // --- page LOGIC START ---
-    
-    // 1. Define how many books per page
-    $results_per_page = 8; 
-
-    // 2. Find out the number of items in the database
-    $sql_count = "SELECT COUNT(*) AS total FROM books";
-    $result_count = $conn->query($sql_count);
-    $row_count = $result_count->fetch_assoc();
-    $total_records = $row_count['total'];
-
-    // 3. Determine number of total pages available
-    $total_pages = ceil($total_records / $results_per_page);
-
-    // 4. Determine which page number visitor is currently on
-    if (!isset($_GET['page'])) {
-        $page = 1;
-    } else {
-        $page = $_GET['page'];
-    }
-
-    // 5. Determine the starting limit number for the SQL LIMIT
-    $this_page_first_result = ($page - 1) * $results_per_page;
-
-    // 6. Retrieve selected results from database
-    $sql = "SELECT * FROM books ORDER BY id DESC LIMIT " . $this_page_first_result . ',' .  $results_per_page;
-    $result = $conn->query($sql);
-
-    // --- page LOGIC END ---
-
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $imagePath = getImagePath($row["image"]);
-            
-            // Your existing Card HTML
-            echo "
-            <div class='book-card'>
-                <a href='det.php?id=".$row["id"]."'>
-                    <div class='image-box'>
-                        <img src='".$imagePath."' alt='Book Cover'>
-                    </div>
-                </a>
-                
-                <div class='details'>
-                    <span class='genre'>".$row["genre"]."</span>
-                    
-                    <a href='det.php?id=".$row["id"]."' style='color:inherit; text-decoration:none;'>
-                        <h3>".$row["title"]."</h3>
-                    </a>
-                    
-                    <p class='author'>By ".$row["author"]."</p>
-                    
-                    <div class='card-bottom'>
-                        <span class='price'>$".$row["price"]."</span>
-                        <button style='border:none; background:none; cursor:pointer;'>
-                            <i class='uil uil-shopping-bag' style='font-size: 20px; color: #3c3633;'></i>
-                        </button>
-                    </div>
+            <section class="products-section">
+                <div class="products-header" style="border:2px dashed #ffffff; border-radius: 15px;">
+                    <h1>All Products</h1>
                 </div>
-            </div>
-            ";
-        }
-    } else {
-        echo "<p style='text-align:center; width:100%;'>No products found.</p>";
-    }
-    ?>
-</div>
+                <hr>
+                <p style="text-align: center; color: #5d5550; font-size: 1.2rem; max-width: 800px; margin: 20px auto 40px auto; animation: fadeInUp 0.6s ease 0.2s both;">
+                    Discover all the amazing books we have to offer.
+                </p>
+                <hr>
+            
+                <div class="book-grid">
+                    <?php
+                    // --- page LOGIC START ---
+                    
+                    // 1. Define how many books per page
+                    $results_per_page = 8; 
 
-<div class="page">
-    <?php
-    // Previous Button
-    if($page > 1){
-        echo '<a href="allproduct.php?page=' . ($page-1) . '"><i class="uil uil-angle-left"></i></a>';
-    }
+                    // 2. Find out the number of items in the database
+                    $sql_count = "SELECT COUNT(*) AS total FROM books";
+                    $result_count = $conn->query($sql_count);
+                    $row_count = $result_count->fetch_assoc();
+                    $total_records = $row_count['total'];
 
-    // Page Numbers
-    for ($i = 1; $i <= $total_pages; $i++) {
-        if ($i == $page) {
-            echo '<a class="active" href="allproduct.php?page=' . $i . '">' . $i . '</a>';
-        } else {
-            echo '<a href="allproduct.php?page=' . $i . '">' . $i . '</a>';
-        }
-    }
+                    // 3. Determine number of total pages available
+                    $total_pages = ceil($total_records / $results_per_page);
 
-    // Next Button
-    if($page < $total_pages){
-        echo '<a href="allproduct.php?page=' . ($page+1) . '"><i class="uil uil-angle-right"></i></a>';
-    }
-    ?>
-</div>
+                    // 4. Determine which page number visitor is currently on
+                    if (!isset($_GET['page'])) {
+                        $page = 1;
+                    } else {
+                        $page = $_GET['page'];
+                    }
+
+                    // 5. Determine the starting limit number for the SQL LIMIT
+                    $this_page_first_result = ($page - 1) * $results_per_page;
+
+                    // 6. Retrieve selected results from database
+                    $sql = "SELECT * FROM books ORDER BY id DESC LIMIT " . $this_page_first_result . ',' .  $results_per_page;
+                    $result = $conn->query($sql);
+
+                    // --- page LOGIC END ---
+
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $imagePath = getImagePath($row["image"]);
+                            
+                            // Your existing Card HTML
+                            echo "
+                            <div class='book-card'>
+                                <a href='det.php?id=".$row["id"]."'>
+                                    <div class='image-box'>
+                                        <img src='".$imagePath."' alt='Book Cover'>
+                                    </div>
+                                </a>
+                                
+                                <div class='details'>
+                                    <span class='genre'>".$row["genre"]."</span>
+                                    
+                                    <a href='det.php?id=".$row["id"]."' style='color:inherit; text-decoration:none;'>
+                                        <h3>".$row["title"]."</h3>
+                                    </a>
+                                    
+                                    <p class='author'>By ".$row["author"]."</p>
+                                    
+                                    <div class='card-bottom'>
+                                        <span class='price'>$".$row["price"]."</span>
+                                        <button style='border:none; background:none; cursor:pointer;'>
+                                            <i class='uil uil-shopping-bag' style='font-size: 20px; color: #3c3633;'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            ";
+                        }
+                    } else {
+                        echo "<p style='text-align:center; width:100%;'>No products found.</p>";
+                    }
+                    ?>
+                </div>
+
+                <div class="page">
+                    <?php
+                    // Previous Button
+                    if($page > 1){
+                        echo '<a href="allproduct.php?page=' . ($page-1) . '"><i class="uil uil-angle-left"></i></a>';
+                    }
+
+                    // Page Numbers
+                    for ($i = 1; $i <= $total_pages; $i++) {
+                        if ($i == $page) {
+                            echo '<a class="active" href="allproduct.php?page=' . $i . '">' . $i . '</a>';
+                        } else {
+                            echo '<a href="allproduct.php?page=' . $i . '">' . $i . '</a>';
+                        }
+                    }
+
+                    // Next Button
+                    if($page < $total_pages){
+                        echo '<a href="allproduct.php?page=' . ($page+1) . '"><i class="uil uil-angle-right"></i></a>';
+                    }
+                    ?>
+                </div>
+            </section>
         </div>
 
 
@@ -210,7 +296,7 @@ function getImagePath($dbImage) {
                         <li><a href="viewall.php?genre=Sci-Fi">Science Fiction</a></li>
                         <li><a href="viewall.php?genre=Education">Educational</a></li>
                         <li><a href="about.php">About Us</a></li>
-                        <li><a href="#">Contact US</a></li>
+                        <li><a href="about.php">Contact US</a></li>
                     </ul>
                 </div>
 
