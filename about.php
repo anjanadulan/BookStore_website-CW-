@@ -361,6 +361,7 @@ session_start();
                 
                 <div class="team-grid">
                     <div class="team-card">
+                        <a href="https://github.com/anjanadulan" target="_blank">
                         <i class="uil uil-laptop-cloud team-icon"></i>
                         <i class="uil uil-database team-icon"></i>
                         <div class="team-name">Anjana Wijerathna</div>
@@ -369,9 +370,11 @@ session_start();
                             Full-stack developer specializing in PHP and database architecture. Passionate about creating 
                             elegant solutions to complex problems.
                         </div>
+                        </a>   
                     </div>
-
+                    
                     <div class="team-card">
+                        <a href="https://github.com/meliDev14" target="_blank">
                         <i class="uil uil-palette team-icon"></i>
                         <div class="team-name">Melisha Devaraj</div>
                         <div class="team-role">UI/UX Designer</div>
@@ -379,9 +382,11 @@ session_start();
                             Creative designer focused on user-centered design principles. Believes beautiful interfaces 
                             should be intuitive and accessible.
                         </div>
+                        </a>
                     </div>
 
                     <div class="team-card">
+                        <a href="https://github.com/TharuPerera916" target="_blank">
                         <i class="uil uil-book-alt team-icon"></i>
                         <div class="team-name">Pabodhini Perera</div>
                         <div class="team-role">Content Curator</div>
@@ -389,6 +394,7 @@ session_start();
                             Avid reader with expertise across all genres. Carefully selects each title to ensure quality 
                             and diversity in our collection.
                         </div>
+                        </a>
                     </div>
                 </div>
 
