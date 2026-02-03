@@ -2,14 +2,14 @@
 session_start();
 include 'db.php';
 
-// Helper function
+// get img path
 function getImagePath($dbImage) {
     if (empty($dbImage)) { return "uploads/default.png"; }
     if (strpos($dbImage, 'uploads/') === 0) { return $dbImage; }
     return "uploads/" . $dbImage;
 }
 
-// 1. GET THE SEARCH TERM
+// serch condi
 if (isset($_GET['q'])) {
     $search = $conn->real_escape_string($_GET['q']); 
 }
@@ -31,7 +31,6 @@ if (isset($_GET['q'])) {
         <script src="script.js" defer></script>
 
         <style>
-            /* Internal CSS for no results */
             .no-results {
                 grid-column: 1 / -1;
                 text-align: center;
@@ -82,7 +81,6 @@ if (isset($_GET['q'])) {
         <div class="main-container">
             <div class="book-grid">
                 <?php
-                //SEARCH QUERY
                 $sql = "SELECT * FROM books WHERE title LIKE '%$search%' OR author LIKE '%$search%' ORDER BY id DESC";
                 $result = $conn->query($sql);
 
@@ -118,7 +116,6 @@ if (isset($_GET['q'])) {
                         ";
                     }
                 } else {
-                    //NO RESULTS MESSAGE
                     echo "
                     <div class='no-results'>
                         <i class='uil uil-search'></i>

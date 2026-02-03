@@ -121,7 +121,7 @@ if (isset($_GET['genre'])) {
                         ";
                     }
                 }else{
-                    // NO BOOKS MESSAGE
+                    // no books found
                     echo "
                     <div class='no-results'>
                         <i class='uil uil-search'></i>

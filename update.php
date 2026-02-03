@@ -85,7 +85,7 @@ if (isset($_POST['delete'])) {
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         
         <style>
-            /* --- FIXED LAYOUT STYLES --- */
+            /* layouts */
             input[type="file"] {
                 display: block;
                 width: 100%;

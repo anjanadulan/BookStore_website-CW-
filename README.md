@@ -232,12 +232,6 @@ For questions or support, please contact us through:
 - Twitter: [x.com/horizonbooks](https://www.x.com/)
 - Email: Contact form on website
 
-## Credits
-
-- Font Awesome for icons
-- Unicons for additional iconography
-- Design and development by the Horizon Books team
-
 ---
 
 **Copyright © 2025 HorizonBooks. All rights reserved.**

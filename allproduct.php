@@ -185,41 +185,32 @@ function getImagePath($dbImage) {
             
                 <div class="book-grid">
                     <?php
-                    // --- page LOGIC START ---
-                    
-                    // 1. Define how many books per page
                     $results_per_page = 8; 
 
-                    // 2. Find out the number of items in the database
                     $sql_count = "SELECT COUNT(*) AS total FROM books";
                     $result_count = $conn->query($sql_count);
                     $row_count = $result_count->fetch_assoc();
                     $total_records = $row_count['total'];
 
-                    // 3. Determine number of total pages available
                     $total_pages = ceil($total_records / $results_per_page);
 
-                    // 4. Determine which page number visitor is currently on
+                    // page numbering
                     if (!isset($_GET['page'])) {
                         $page = 1;
                     } else {
                         $page = $_GET['page'];
                     }
 
-                    // 5. Determine the starting limit number for the SQL LIMIT
                     $this_page_first_result = ($page - 1) * $results_per_page;
 
-                    // 6. Retrieve selected results from database
+                    //get data from db
                     $sql = "SELECT * FROM books ORDER BY id DESC LIMIT " . $this_page_first_result . ',' .  $results_per_page;
                     $result = $conn->query($sql);
-
-                    // --- page LOGIC END ---
 
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             $imagePath = getImagePath($row["image"]);
                             
-                            // Your existing Card HTML
                             echo "
                             <div class='book-card'>
                                 <a href='det.php?id=".$row["id"]."'>
@@ -255,12 +246,12 @@ function getImagePath($dbImage) {
 
                 <div class="page">
                     <?php
-                    // Previous Button
+                    //btn prev
                     if($page > 1){
                         echo '<a href="allproduct.php?page=' . ($page-1) . '"><i class="uil uil-angle-left"></i></a>';
                     }
 
-                    // Page Numbers
+                    // numbersPage Numbers
                     for ($i = 1; $i <= $total_pages; $i++) {
                         if ($i == $page) {
                             echo '<a class="active" href="allproduct.php?page=' . $i . '">' . $i . '</a>';
@@ -269,7 +260,7 @@ function getImagePath($dbImage) {
                         }
                     }
 
-                    // Next Button
+                    // btn nxt
                     if($page < $total_pages){
                         echo '<a href="allproduct.php?page=' . ($page+1) . '"><i class="uil uil-angle-right"></i></a>';
                     }

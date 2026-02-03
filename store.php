@@ -70,20 +70,19 @@ include 'db.php';
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         
-                        // --- IMAGE FIX LOGIC START ---
+                        // image
                         $dbImage = $row["image"];
-                        $imagePath = "uploads/default.png"; // Fallback if nothing works
+                        $imagePath = "uploads/default.png"; // no image set default
 
                         if (!empty($dbImage)) {
-                            // 1. Check if the DB value already starts with "uploads/"
+                            // check path correctness
                             if (strpos($dbImage, 'uploads/') === 0) {
                                 $imagePath = $dbImage;
                             } else {
-                                // 2. If not, add it manually (Fixes "filename only" issues)
+                                // add manual if nott
                                 $imagePath = "uploads/" . $dbImage;
                             }
                         }
-                        // --- IMAGE FIX LOGIC END ---
 
                         echo "
                         <div class='book-card'>

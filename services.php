@@ -1,6 +1,6 @@
 <?php
 session_start();
-// No database connection needed for static text, but good to have if you expand later
+// db unwanted, no data getting
 ?>
 
 <!DOCTYPE html>
@@ -158,11 +158,11 @@ session_start();
         }
 
 
-        /* Email Popup windwo styles */
+        /* Epopup wind styles */
         .modal {
             display: none;
             position: fixed; 
-            z-index: 2000; /* bring to forward uhhh top */
+            z-index: 2000; /* bring to front atribute*/
             left: 0;
             top: 0;
             width: 100%; 

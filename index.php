@@ -205,7 +205,6 @@ function getImagePath($dbImage) {
                         while($row = $result->fetch_assoc()) {
                             $imagePath = getImagePath($row["image"]);
                             
-                            // MERGED CARD for Grid
                             echo "
                             <div class='book-card'>
                                 <a href='det.php?id=".$row["id"]."'>
@@ -234,7 +233,7 @@ function getImagePath($dbImage) {
                             ";
                         }
 
-                        // THE VIEW MORE CARD
+                        // view more
                         echo "
                         <div class='book-card carousel-card view-more-card'>
                             <a href='allproduct.php'>
@@ -292,7 +291,6 @@ function getImagePath($dbImage) {
                                 ";
                             }
                             
-                            // THE VIEW MORE CARD
                             echo "
                             <div class='book-card carousel-card view-more-card'>
                                 <a href='viewall.php?genre=Sci-Fi'>
@@ -363,7 +361,6 @@ function getImagePath($dbImage) {
                                 ";
                             }
                             
-                            // THE VIEW MORE CARD
                             echo "
                             <div class='book-card carousel-card view-more-card'>
                                 <a href='viewall.php?genre=Education'>
@@ -434,7 +431,6 @@ function getImagePath($dbImage) {
                                 ";
                             }
                             
-                            // THE VIEW MORE CARD
                             echo "
                             <div class='book-card carousel-card view-more-card'>
                                 <a href='viewall.php?genre=Novel'>
@@ -505,7 +501,6 @@ function getImagePath($dbImage) {
                                 ";
                             }
                             
-                            // THE VIEW MORE CARD
                             echo "
                             <div class='book-card carousel-card view-more-card'>
                                 <a href='viewall.php?genre=History'>
@@ -576,7 +571,6 @@ function getImagePath($dbImage) {
                                 ";
                             }
                             
-                            // THE VIEW MORE CARD
                             echo "
                             <div class='book-card carousel-card view-more-card'>
                                 <a href='viewall.php?genre=Fiction'>
@@ -647,7 +641,6 @@ function getImagePath($dbImage) {
                                 ";
                             }
                             
-                            // THE VIEW MORE CARD
                             echo "
                             <div class='book-card carousel-card view-more-card'>
                                 <a href='viewall.php?genre=Other'>
